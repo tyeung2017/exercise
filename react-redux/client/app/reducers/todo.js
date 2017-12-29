@@ -11,4 +11,5 @@ export default () => [
   'machine learning with different source',
   'find jobs',
   'bookmark backlogs',
+  'try out currying? especially in node',
 ];

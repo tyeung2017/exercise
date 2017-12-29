@@ -23,20 +23,21 @@ class Info extends Component {
     // show data
     return (
       <div>
+        <p>Fetch Exercise</p>
         {this.props.isFetching ? <p>loading</p> : <p>{this.props.content}</p>}
+        {this.props.error && <p>{this.props.error}</p>}
       </div>
     );
   }
 }
 
-const mSTP = ({ fetch: { isFetching, content } }) => {
+const mSTP = ({ fetch: { isFetching, content, error } }) => {
   const output = JSON.stringify(content);
-
-  console.log('calling mstp', content); // called three times?
 
   return {
     isFetching,
     content: output,
+    error,
   };
 };
 
@@ -51,9 +52,7 @@ const Display = connect(mSTP, mapDispatchToProps)(Info);
 // new mapStateToProps
 // new mapDispatchToProps
 
-const mapStatToProps = ({ todo }) => (
-  { todo }
-);
+const mapStatToProps = ({ todo }) => ({ todo });
 
 const Main = connect(mapStatToProps)(List);
 
@@ -74,6 +73,7 @@ Info.propTypes = {
   fetchAPI: Proptypes.func.isRequired,
   content: Proptypes.string.isRequired,
   isFetching: Proptypes.bool.isRequired,
+  error: Proptypes.string,
 };
 
 render(App, document.getElementById('root'));

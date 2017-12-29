@@ -5,10 +5,17 @@ import { CONVERSION_ERROR, CONVERSION_RESULT, CONVERSION_START } from '../action
 const goFetch = () => fetch('https://api.fixer.io/latest?base=GBP');
 
 function* callingAPI(action) {
-  const response = yield call(goFetch);
-  const result = yield response.json();
+  try {
+    const response = yield call(goFetch);
+    const result = yield response.json();
+    console.log(response, result, response.status);
 
-  yield put({ type: CONVERSION_RESULT, result });
+    yield put({ type: CONVERSION_RESULT, result });
+
+    if (!response.ok) { throw Error(result.error); }
+  } catch (error) {
+    yield put({ type: CONVERSION_ERROR, error: error.message });
+  }
 }
 
 export default function* rootSaga() {
