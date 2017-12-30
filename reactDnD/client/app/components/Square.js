@@ -4,6 +4,7 @@ import Proptypes from 'prop-types';
 export default class Square extends Component {
     static propTypes = {
       black: Proptypes.bool,
+      children: Proptypes.element,
     }
 
     render() {

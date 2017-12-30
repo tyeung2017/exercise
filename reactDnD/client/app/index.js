@@ -6,4 +6,7 @@ import Knight from './components/Knight';
 import Square from './components/Square';
 import Board from './components/Board';
 
-render(<Board knightPosition={[4, 5]} />, document.getElementById('root'));
+import { observe } from './Game';
+
+observe(knightPosition => render(<Board knightPosition={knightPosition} />, document.getElementById('root')));
+
