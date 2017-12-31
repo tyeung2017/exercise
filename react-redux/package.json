@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack -d --watch",
     "build": "webpack -p",
-    "start": "node server/server.js",
+    "start": "node server/index.js",
     "test": "jest"
   },
   "repository": {
